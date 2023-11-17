@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { auth, provider } from "../../firebase-config";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import { Icon } from "@iconify/react";
@@ -9,23 +9,35 @@ const Login = ({ setIsAuth }) => {
   const navigate = useNavigate();
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
-  const signInWithGoogle = async () => {
-    if (!isButtonClicked) {
-      setIsButtonClicked(true);
-      try {
-        const result = await signInWithPopup(auth, provider);
-        // Save author's name and image to localStorage
-        localStorage.setItem("isAuth", true);
-        localStorage.setItem("authorName", result.user.displayName);
-        localStorage.setItem("authorImage", result.user.photoURL);
-        setIsAuth(true);
-        navigate("/");
-      } catch (error) {
-        // Handle network error
-        console.error("Network error:", error);
-      }
-    }
-  };
+ const signInWithGoogle = async () => {
+   try {
+     const result = await signInWithPopup(auth, provider);
+     // This gives you a Google Access Token. You can use it to access the Google API.
+     const credential = GoogleAuthProvider.credentialFromResult(result);
+     const token = credential.accessToken;
+     // The signed-in user info.
+     const user = result.user;
+
+     // Save author's name and image to localStorage
+     localStorage.setItem("isAuth", true);
+     localStorage.setItem("authorName", user.displayName);
+     localStorage.setItem("authorImage", user.photoURL);
+
+     setIsAuth(true);
+     navigate("/");
+   } catch (error) {
+     // Handle Errors here.
+     const errorCode = error.code;
+     const errorMessage = error.message;
+     // The email of the user's account used.
+     const email = error.email;
+     // The AuthCredential type that was used.
+     const credential = GoogleAuthProvider.credentialFromError(error);
+     // Handle network error
+     console.error("Network error:", error);
+   }
+ };
+
 
   return (
     <>
