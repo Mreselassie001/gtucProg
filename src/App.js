@@ -166,7 +166,7 @@ function App() {
           </div>
           <ul className="side-menu">
             {!isAdminAuth && (
-              <li className={activeLink === "/home" ? "active" : ""}>
+              <li className={activeLink === "/" ? "active" : ""}>
                 <Link to="/">
                   <i className="bx bx-analyse">
                     <Icon icon="pepicons-pop:list" />
@@ -411,7 +411,7 @@ function App() {
             />
           }
         />
-      
+       
       </Routes>
     </Router>
   );

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { auth, provider } from "../../firebase-config";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithRedirect, getRedirectResult } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import { Icon } from "@iconify/react";
@@ -9,27 +9,40 @@ const Login = ({ setIsAuth }) => {
   const navigate = useNavigate();
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
-  const signInWithGoogle = async () => {
+useEffect(() => {
+  const handleRedirectResult = async () => {
     try {
-      if (!isButtonClicked) {
-        setIsButtonClicked(true);
+      const result = await getRedirectResult(auth);
 
-        const result = await signInWithPopup(auth, provider);
-
+      if (result && result.user) {
+        navigate("/");
         // Save author's name and image to localStorage
         localStorage.setItem("isAuth", true);
         localStorage.setItem("authorName", result.user.displayName);
         localStorage.setItem("authorImage", result.user.photoURL);
-
         setIsAuth(true);
-        navigate("/home");
       }
     } catch (error) {
-      // Handle network error
-      console.error("Network error:", error);
-    } finally {
-      // Reset the button click state in case of success or error
-      setIsButtonClicked(false);
+      // Handle errors from the redirect result
+      console.error("Redirect result error:", error);
+    }
+  };
+
+  handleRedirectResult();
+}, [setIsAuth, navigate]);
+
+
+  const signInWithGoogle = () => {
+    if (!isButtonClicked) {
+      setIsButtonClicked(true);
+
+      try {
+        // Initiate the sign-in redirect
+        signInWithRedirect(auth, provider);
+      } catch (error) {
+        // Handle network error
+        console.error("Network error:", error);
+      }
     }
   };
 
@@ -45,8 +58,7 @@ const Login = ({ setIsAuth }) => {
                   GCTU<span>Prog</span>
                 </b>
               </h1>
-              <br />
-              <h2>Where Ideas Flourish. The Nexus of Imagination. </h2>
+              <br /> <h2>Where Ideas Flourish. The Nexus of Imagination. </h2>
               <br />
               <div className="flex_buttons">
                 <button
