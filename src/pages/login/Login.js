@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { auth, provider } from "../../firebase-config";
-import { signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import { Icon } from "@iconify/react";
@@ -9,42 +9,34 @@ const Login = ({ setIsAuth }) => {
   const navigate = useNavigate();
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
-useEffect(() => {
-  const handleRedirectResult = async () => {
-    try {
-      const result = await getRedirectResult(auth);
+  // const signInWithGoogle = async () => {
+  //   if (!isButtonClicked) {
+  //     setIsButtonClicked(true);
+  //     try {
+  //       const result = await signInWithPopup(auth, provider);
+  //       // Save author's name and image to localStorage
+  //       localStorage.setItem("isAuth", true);
+  //       localStorage.setItem("authorName", result.user.displayName);
+  //       localStorage.setItem("authorImage", result.user.photoURL);
+  //       setIsAuth(true);
+  //       navigate("/");
+  //     } catch (error) {
+  //       // Handle network error
+  //       console.error("Network error:", error);
+  //     }
+  //   }
+  // };
 
-      if (result && result.user) {
-        navigate("/");
-        // Save author's name and image to localStorage
+
+    const signInWithGoogle = () => {
+      signInWithPopup(auth, provider).then((result) => {
         localStorage.setItem("isAuth", true);
         localStorage.setItem("authorName", result.user.displayName);
         localStorage.setItem("authorImage", result.user.photoURL);
         setIsAuth(true);
-      }
-    } catch (error) {
-      // Handle errors from the redirect result
-      console.error("Redirect result error:", error);
-    }
-  };
-
-  handleRedirectResult();
-}, [setIsAuth, navigate]);
-
-
-  const signInWithGoogle = () => {
-    if (!isButtonClicked) {
-      setIsButtonClicked(true);
-
-      try {
-        // Initiate the sign-in redirect
-        signInWithRedirect(auth, provider);
-      } catch (error) {
-        // Handle network error
-        console.error("Network error:", error);
-      }
-    }
-  };
+        navigate("/");
+      });
+    };
 
   return (
     <>
@@ -52,8 +44,7 @@ useEffect(() => {
         <div className="bg">
           <div className="flex-container">
             <div>
-              <h1>
-                Welcome to{" "}
+              <h1>Welcome to{" "}
                 <b>
                   GCTU<span>Prog</span>
                 </b>
@@ -61,11 +52,7 @@ useEffect(() => {
               <br /> <h2>Where Ideas Flourish. The Nexus of Imagination. </h2>
               <br />
               <div className="flex_buttons">
-                <button
-                  className="login-with-google-btn"
-                  onClick={signInWithGoogle}
-                  disabled={isButtonClicked}
-                >
+                <button className="login-with-google-btn" onClick={signInWithGoogle} disabled={isButtonClicked}>
                   {isButtonClicked ? "Signing In..." : "Student Sign in"}
                 </button>
               </div>
