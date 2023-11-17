@@ -570,7 +570,7 @@ button:active .filler {
   }
   .projectPage .project {
     width: auto;
-    margin: 10% 15% 4% 20%;
+    margin: 10% 10% 4% 12%;
   }
 
   a {
@@ -620,6 +620,9 @@ button:active .filler {
   }
 }
 @media (max-width: 480px) {
+  .projectPage .project {
+    margin: 15%;
+  }
   .projectPage .project .title {
     margin-top: 6px;
     margin-bottom: 40px;
