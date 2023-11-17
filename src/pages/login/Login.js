@@ -10,24 +10,28 @@ const Login = ({ setIsAuth }) => {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const signInWithGoogle = async () => {
-    if (!isButtonClicked) {
-      setIsButtonClicked(true);
-      try {
+    try {
+      if (!isButtonClicked) {
+        setIsButtonClicked(true);
+
         const result = await signInWithPopup(auth, provider);
+
         // Save author's name and image to localStorage
         localStorage.setItem("isAuth", true);
         localStorage.setItem("authorName", result.user.displayName);
         localStorage.setItem("authorImage", result.user.photoURL);
+
         setIsAuth(true);
         navigate("/");
-      } catch (error) {
-        // Handle network error
-        console.error("Network error:", error);
-           setIsButtonClicked(false);
       }
+    } catch (error) {
+      // Handle network error
+      console.error("Network error:", error);
+    } finally {
+      // Reset the button click state in case of success or error
+      setIsButtonClicked(false);
     }
   };
-
 
   return (
     <>
@@ -35,15 +39,21 @@ const Login = ({ setIsAuth }) => {
         <div className="bg">
           <div className="flex-container">
             <div>
-              <h1>Welcome to{" "}
+              <h1>
+                Welcome to{" "}
                 <b>
                   GCTU<span>Prog</span>
                 </b>
               </h1>
-              <br /> <h2>Where Ideas Flourish. The Nexus of Imagination. </h2>
+              <br />
+              <h2>Where Ideas Flourish. The Nexus of Imagination. </h2>
               <br />
               <div className="flex_buttons">
-                <button className="login-with-google-btn" onClick={signInWithGoogle} disabled={isButtonClicked}>
+                <button
+                  className="login-with-google-btn"
+                  onClick={signInWithGoogle}
+                  disabled={isButtonClicked}
+                >
                   {isButtonClicked ? "Signing In..." : "Student Sign in"}
                 </button>
               </div>
