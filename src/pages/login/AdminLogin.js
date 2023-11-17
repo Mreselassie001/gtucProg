@@ -12,7 +12,7 @@ const AdminLogin = ({ setIsAdminAuth }) => {
     { name: "Admin 1", password: "password1" },
     { name: "Admin 2", password: "password2" },
   ];
-
+ 
   const handleAdminSelect = (admin) => {
     setSelectedAdmin(admin);
     setPasswordModalOpen(true);
