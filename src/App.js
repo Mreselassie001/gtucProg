@@ -158,7 +158,7 @@ function App() {
   return (
     <Router>
       <>
-        <div className="sidebar z">
+        <div className="sidebar">
           <div className="logo">
             <img src="GCTULogo.png" alt="" className="bx bx-code-alt" />
             <div className="logo-name">
@@ -167,7 +167,7 @@ function App() {
           </div>
           <ul className="side-menu">
             {!isAdminAuth && (
-              <li className={activeLink === "/" ? "active" : ""}>
+              <li className={activeLink === "/home" ? "active" : ""}>
                 <Link to="/">
                   <i className="bx bx-analyse">
                     <Icon icon="pepicons-pop:list" />

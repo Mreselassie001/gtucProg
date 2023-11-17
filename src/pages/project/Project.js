@@ -158,7 +158,7 @@ ${window.location.href}`;
       hideDeletedMessage();
       hideDeleteConfirmation();
       // Redirect to the home page after a delay
-      Navigate("/");
+      Navigate("/home");
     }, 2000); // Delay in milliseconds
   };
   const handleGoBack = () => {
@@ -166,16 +166,16 @@ ${window.location.href}`;
 
     if (isAuth) {
       // If user is authenticated, navigate to the standard user home page
-      Navigate("/");
+      Navigate("/home");
     } else if (isAdminAuth) {
       // If user is an admin, navigate to the admin home page
       Navigate("/AdminProjectList");
     } else if (previousPageURL === window.location.origin + "/createProject") {
       // If the previous URL is /createProject, navigate to the standard URL
-      Navigate("/");
+      Navigate("/home");
     } else {
       // Navigate to the previous page's URL
-      Navigate(previousPageURL || "/");
+      Navigate(previousPageURL || "/home");
     }
   };
 

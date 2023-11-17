@@ -22,7 +22,7 @@ const Login = ({ setIsAuth }) => {
         localStorage.setItem("authorImage", result.user.photoURL);
 
         setIsAuth(true);
-        navigate("/");
+        navigate("/home");
       }
     } catch (error) {
       // Handle network error
