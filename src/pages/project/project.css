@@ -570,7 +570,7 @@ button:active .filler {
   }
   .projectPage .project {
     width: auto;
-    margin: 0% 10% 4% 10%;
+    margin: 10% 10% 4% 10%;
   }
 
   a {
@@ -756,7 +756,7 @@ button:active .filler {
   flex-direction: column;
   padding: 25px;
   z-index: 999;
-  margin-left: 50px;
+  margin-left: 0px;
   justify-content: center;
   align-items: center;
 }

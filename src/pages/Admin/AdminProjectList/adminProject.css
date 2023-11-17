@@ -197,7 +197,7 @@
 }
 
 .modalContainer {
-  width: 500px;
+  width: auto;
   height: auto;
   border-radius: 12px;
   background-color: white;
@@ -276,9 +276,9 @@
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   .modalContainer {
-    width: 80%;
+    width: auto;
     height: auto;
-    padding: 15px;
+    padding: 25px;
     max-height: 80vh;
   }
 
