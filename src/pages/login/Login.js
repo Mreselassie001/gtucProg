@@ -1,37 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { auth, provider } from "../../firebase-config";
-import { signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import { Icon } from "@iconify/react";
 
 const Login = ({ setIsAuth }) => {
   const navigate = useNavigate();
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
-  useEffect(() => {
-    const handleRedirectResult = async () => {
+  const signInWithGoogle = async () => {
+    if (!isButtonClicked) {
+      setIsButtonClicked(true);
       try {
-        const result = await getRedirectResult(auth);
+        const result = await signInWithPopup(auth, provider);
+        // Save author's name and image to localStorage
+        localStorage.setItem("isAuth", true);
+        localStorage.setItem("authorName", result.user.displayName);
+        localStorage.setItem("authorImage", result.user.photoURL);
         setIsAuth(true);
         navigate("/");
-
-        if (result && result.user) {
-          // Save author's name and image to localStorage
-          localStorage.setItem("isAuth", true);
-          localStorage.setItem("authorName", result.user.displayName);
-          localStorage.setItem("authorImage", result.user.photoURL);
-        }
       } catch (error) {
-        // Handle errors from the redirect result
-        console.error("Redirect result error:", error);
+        // Handle network error
+        console.error("Network error:", error);
       }
-    };
-
-    handleRedirectResult();
-  }, [setIsAuth, navigate]);
-
-  const signInWithGoogle = () => {
-    signInWithRedirect(auth, provider);
+    }
   };
 
   return (
@@ -40,8 +33,7 @@ const Login = ({ setIsAuth }) => {
         <div className="bg">
           <div className="flex-container">
             <div>
-              <h1>
-                Welcome to{" "}
+              <h1>Welcome to{" "}
                 <b>
                   GCTU<span>Prog</span>
                 </b>
@@ -49,11 +41,8 @@ const Login = ({ setIsAuth }) => {
               <br /> <h2>Where Ideas Flourish. The Nexus of Imagination. </h2>
               <br />
               <div className="flex_buttons">
-                <button
-                  className="login-with-google-btn"
-                  onClick={signInWithGoogle}
-                >
-                  Student Sign in
+                <button className="login-with-google-btn" onClick={signInWithGoogle} disabled={isButtonClicked}>
+                  {isButtonClicked ? "Signing In..." : "Student Sign in"}
                 </button>
               </div>
             </div>
