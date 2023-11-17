@@ -9,66 +9,69 @@ const Login = ({ setIsAuth }) => {
   const navigate = useNavigate();
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
- const signInWithGoogle = async () => {
-   try {
-     const result = await signInWithPopup(auth, provider);
-     // This gives you a Google Access Token. You can use it to access the Google API.
-     const credential = GoogleAuthProvider.credentialFromResult(result);
-     const token = credential.accessToken;
-     // The signed-in user info.
-     const user = result.user;
+  const signInWithGoogle = async () => {
+    if (isButtonClicked) return;
 
-     // Save author's name and image to localStorage
-     localStorage.setItem("isAuth", true);
-     localStorage.setItem("authorName", user.displayName);
-     localStorage.setItem("authorImage", user.photoURL);
+    try {
+      setIsButtonClicked(true);
 
-     setIsAuth(true);
-     navigate("/");
-   } catch (error) {
-     // Handle Errors here.
-     const errorCode = error.code;
-     const errorMessage = error.message;
-     // The email of the user's account used.
-     const email = error.email;
-     // The AuthCredential type that was used.
-     const credential = GoogleAuthProvider.credentialFromError(error);
-     // Handle network error
-     console.error("Network error:", error);
-   }
- };
+      const result = await signInWithPopup(auth, provider);
+      const { accessToken } = GoogleAuthProvider.credentialFromResult(result);
+      const { displayName, photoURL } = result.user;
 
+      // Save user information to localStorage
+      localStorage.setItem("isAuth", true);
+      localStorage.setItem("authorName", displayName);
+      localStorage.setItem("authorImage", photoURL);
+
+      setIsAuth(true);
+      navigate("/");
+    } catch (error) {
+      // Handle Errors here.
+      const { code, message, email } = error;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+
+      // Handle network error
+      console.error("Network error:", error);
+    } finally {
+      setIsButtonClicked(false);
+    }
+  };
 
   return (
-    <>
-      <div className="loginPage">
-        <div className="bg">
-          <div className="flex-container">
-            <div>
-              <h1>Welcome to{" "}
-                <b>
-                  GCTU<span>Prog</span>
-                </b>
-              </h1>
-              <br /> <h2>Where Ideas Flourish. The Nexus of Imagination. </h2>
-              <br />
-              <div className="flex_buttons">
-                <button className="login-with-google-btn" onClick={signInWithGoogle} disabled={isButtonClicked}>
-                  {isButtonClicked ? "Signing In..." : "Student Sign in"}
-                </button>
-              </div>
+    <div className="loginPage">
+      <div className="bg">
+        <div className="flex-container">
+          <div>
+            <h1>
+              Welcome to{" "}
+              <b>
+                GCTU<span>Prog</span>
+              </b>
+            </h1>
+            <br />
+            <h2>Where Ideas Flourish. The Nexus of Imagination. </h2>
+            <br />
+            <div className="flex_buttons">
+              <button
+                className="login-with-google-btn"
+                onClick={signInWithGoogle}
+                disabled={isButtonClicked}
+              >
+                {isButtonClicked ? "Signing In..." : "Student Sign in"}
+              </button>
             </div>
-            <div className="flex ">
-              <div className="thesis"></div>
-              <a className="admin" href="Admin">
-                <Icon icon="eos-icons:admin" />
-                <h4>Admin</h4>
-              </a>
-            </div>
+          </div>
+          <div className="flex ">
+            <div className="thesis"></div>
+            <a className="admin" href="Admin">
+              <Icon icon="eos-icons:admin" />
+              <h4>Admin</h4>
+            </a>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
