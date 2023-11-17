@@ -392,7 +392,9 @@ const Home = ({ isAuth, searchTerm, setSearchTerm, setSearchText }) => {
                 </div>
                 <div className="topDetails">
                   <h6>by {project.studentName}</h6>
-                  <h6>{project.year}</h6>
+                  <p>
+                    <b>{project.year}</b>
+                  </p>
                 </div>
                 <div className="projectTextContainer">
                   {project.projectText}
@@ -414,7 +416,11 @@ const Home = ({ isAuth, searchTerm, setSearchTerm, setSearchText }) => {
                       text={`${project.projectGrade}`}
                       strokeWidth={10}
                       styles={{
-                        root: { width: "auto", height: "auto",marginTop:"10px" },
+                        root: {
+                          width: "auto",
+                          height: "auto",
+                          marginTop: "10px",
+                        },
                         path: { stroke: `var(--clr, #535484)` },
                         trail: { stroke: "transparent" },
                         text: {
