@@ -12,7 +12,6 @@ import AdminLogin from "./pages/login/AdminLogin";
 import Login from "./pages/login/Login";
 import Project from "./pages/project/Project";
 import AdminProjectList from "./pages/Admin/AdminProjectList/AdminProjectList";
-import EditProject from "./pages/Editproject/EditProject";
 import { debounce } from "lodash";
 
 function App() {
@@ -412,16 +411,7 @@ function App() {
             />
           }
         />
-        <Route
-          path="/EditProject"
-          element={
-            <EditProject
-              setIsAuth={setIsAuth}
-              authorName={authorName} // Pass authorName as a prop
-              authorImage={authorImage} // Pass authorImage as a prop
-            />
-          }
-        />
+      
       </Routes>
     </Router>
   );
