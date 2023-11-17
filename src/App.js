@@ -13,6 +13,7 @@ import Login from "./pages/login/Login";
 import Project from "./pages/project/Project";
 import AdminProjectList from "./pages/Admin/AdminProjectList/AdminProjectList";
 import EditProject from "./pages/Editproject/EditProject";
+import { debounce } from "lodash";
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
@@ -25,6 +26,8 @@ function App() {
   const [authorImage, setAuthorImage] = useState(
     localStorage.getItem("authorImage")
   );
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchText, setSearchText] = useState("");
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   // Step 2: Functions to show and hide the logout modal
@@ -72,38 +75,15 @@ function App() {
       window.location.pathname = "/login";
     });
   };
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchText, setSearchText] = useState("");
 
   // React state to manage 'active' className for sidebar Links
   const [activeLink, setActiveLink] = useState(null);
 
   // React state to manage the search form visibility
-  const [showSearchForm, setShowSearchForm] = useState(false);
 
   // Function to toggle the sidebar
-  const toggleSidebar = () => {
-    const sideBar = document.querySelector(".sidebar");
-    sideBar.classList.toggle("close");
-  };
 
   // Function to handle search button click
-  const handleSearchButtonClick = (e) => {
-    if (window.innerWidth < 576) {
-      e.preventDefault();
-      setShowSearchForm(!showSearchForm);
-    }
-  };
-
-  // Function to handle window resize
-  const handleResize = () => {
-    if (window.innerWidth < 768) {
-      toggleSidebar();
-    }
-    if (window.innerWidth > 576) {
-      setShowSearchForm(false);
-    }
-  };
 
   const handleThemeToggle = () => {
     const body = document.body;
@@ -134,58 +114,51 @@ function App() {
     }
 
     // Rest of your useEffect code...
-  }, [showSearchForm]); // Only re-run when showSearchForm changes
+  }, []); // Only re-run when showSearchForm changes
+
+  const toggleSidebar = debounce(() => {
+    const sideBar = document.querySelector(".sidebar");
+    sideBar.classList.toggle("close");
+  }, 300); // Adjust the debounce time as needed
 
   useEffect(() => {
-    // Select all sidebar Links except the logout Link
     const sideLinks = document.querySelectorAll(
       ".sidebar .side-menu li a:not(.logout)"
     );
 
-    // Add click event listeners to sidebar Links
     sideLinks.forEach((item) => {
       const li = item.parentElement;
       item.addEventListener("click", () => {
-        // Remove 'active' className from all sidebar Links
         sideLinks.forEach((i) => {
           i.parentElement.classList.remove("active");
         });
-        // Add 'active' className to the clicked Link's parent <li>
         li.classList.add("active");
-        // Update the active Link in React state
         setActiveLink(item);
       });
     });
 
-    // Add event listeners for menu bar, search button, and window resize
     const menuBar = document.querySelector(".content nav .bx.bx-menu");
     const searchBtn = document.querySelector(
       ".content nav form .form-input button"
     );
-    window.addEventListener("resize", handleResize);
-    menuBar.addEventListener("click", toggleSidebar);
-    searchBtn.addEventListener("click", handleSearchButtonClick);
 
-    // Add event listener for theme toggle
+    menuBar.addEventListener("click", toggleSidebar);
+
     const toggler = document.getElementById("theme-toggle");
     toggler.addEventListener("change", handleThemeToggle);
 
-    // Cleanup function for removing event listeners
     return () => {
-      window.removeEventListener("resize", handleResize);
       menuBar.removeEventListener("click", toggleSidebar);
-      searchBtn.removeEventListener("click", handleSearchButtonClick);
       toggler.removeEventListener("change", handleThemeToggle);
     };
-  }, [showSearchForm]); // Only re-run when showSearchForm changes
-
+  }, []);
   //--------------------------------------------------
   //------------------------------------------------
 
   return (
     <Router>
       <>
-        <div className="sidebar ">
+        <div className="sidebar z">
           <div className="logo">
             <img src="GCTULogo.png" alt="" className="bx bx-code-alt" />
             <div className="logo-name">
