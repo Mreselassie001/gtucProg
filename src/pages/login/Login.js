@@ -23,9 +23,11 @@ const Login = ({ setIsAuth }) => {
       } catch (error) {
         // Handle network error
         console.error("Network error:", error);
+           setIsButtonClicked(false);
       }
     }
   };
+
 
   return (
     <>
