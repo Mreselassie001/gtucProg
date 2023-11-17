@@ -1,0 +1,38 @@
+.modalBackground {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalBackground.active {
+  display: flex;
+}
+
+.modalContainer {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.modalContainer button {
+  margin: 5px;
+  padding: 5px 10px;
+}
+
+#cancelBtn {
+  background-color: #ccc;
+}
+
+.modalContainer button:hover {
+  cursor: pointer;
+}

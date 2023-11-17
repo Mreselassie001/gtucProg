@@ -1,38 +1,524 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --light: #f6f6f9;
+  --primary: #1976d2;
+  --light-primary: #cfe8ff;
+  --grey: #eee;
+  --dark-grey: #aaaaaa;
+  --dark: #45474e;
+  --danger: #d32f2f;
+  --light-danger: #fecdd3;
+  --warning: #fbc02d;
+  --light-warning: #fff2c6;
+  --success: #388e3c;
+  --light-success: #bbf7d0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bx {
+  font-size: 1.7rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body.dark {
+  --light: #181a1e;
+  --grey: #25252c;
+  --dark: #fbfbfb;
+}
+
+body {
+  background: var(--grey);
+  overflow-x: hidden;
+}
+
+button{
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--light);
+  width: 230px;
+  height: 100%;
+  z-index: 2000;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  transition: all 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar.close {
+  width: 60px;
+}
+
+.sidebar .logo {
+  font-size: 24px;
+  font-weight: 700;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  color: var(--primary);
+  z-index: 500;
+  padding-bottom: 20px;
+  box-sizing: content-box;
+}
+
+.sidebar .logo .logo-name span {
+  color: var(--dark);
+}
+
+.sidebar .logo .bx {
+  max-width: 60px;
+  display: flex;
+  justify-content: center;
+  font-size: 2.2rem;
+  padding: 2px 10px 2px 10px;
+}
+
+.sidebar .side-menu {
+  width: 100%;
+  margin-top: 48px;
+}
+.sidebar .side-menu .userProfile {
+  display: grid;
+  align-items: center;
+}
+
+.sidebar .side-menu li {
+  height: 48px;
+  background: transparent;
+  margin-left: 6px;
+  border-radius: 48px 0 0 48px;
+  padding: 4px;
+}
+
+.sidebar .side-menu li.active {
+  background: var(--grey);
+  position: relative;
+  top: -1px;
+}
+
+.sidebar .side-menu li.active::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: -40px;
+  right: 0;
+  box-shadow: 20px 20px 0 var(--grey);
+  z-index: -1;
+}
+
+.sidebar .side-menu li.active::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  bottom: -40px;
+  right: 0;
+  box-shadow: 20px -20px 0 var(--grey);
+  z-index: -1;
+}
+
+.sidebar .side-menu li a {
+  width: 100%;
+  height: 100%;
+  background: var(--light);
+  display: flex;
+  align-items: center;
+  border-radius: 48px;
+  font-size: 16px;
+  color: var(--dark);
+  white-space: nowrap;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+}
+
+.sidebar .side-menu li.active a {
+  color: var(--primary);
+}
+
+.sidebar.close .side-menu li a {
+  width: calc(48px - (4px * 2));
+  transition: all 0.3s ease;
+}
+.sidebar.close .side-menu .theme-toggle {
+  width: calc(60px - (1px * 1));
+  transition: all 0.1s ease;
+}
+
+.sidebar .side-menu li a .bx {
+  min-width: calc(60px - ((4px + 6px) * 2));
+  display: flex;
+  font-size: 1.6rem;
+  justify-content: center;
+}
+
+.content {
+  position: relative;
+  width: calc(100% - 230px);
+  left: 230px;
+  transition: all 0.3s ease;
+}
+
+.sidebar.close ~ .content {
+  width: calc(100% - 60px);
+  left: 60px;
+}
+
+.content nav {
+  height: 56px;
+
+  width: 100%;
+  background: var(--light);
+  padding: 0 24px 0 0;
+  display: flex;
+  align-items: center;
+  grid-gap: 10px;
+  position: fixed;
+  top: 0;
+  left: px;
+  z-index: 1000;
+}
+
+.content nav::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  bottom: -40px;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: -20px -20px 0 var(--light);
+}
+
+.content nav a {
+  color: var(--dark);
+}
+
+.content nav .bx.bx-menu {
+  cursor: pointer;
+  color: var(--dark);
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  margin-left: 10px;
+}
+
+.content nav form {
+  max-width: 80%;
+  width: 100%;
+  margin-right: auto;
+  padding-right: 20px;
+}
+
+.content nav form .form-input {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 10% 0 10%;
+  width: 100%;
+}
+
+.content nav form .form-input input {
+  padding: 0 56px 0 13px;
+  height: 100%;
+  border: none;
+  background: var(--grey);
+  border-radius: 36px 0 0 36px;
+  outline: none;
+  width: 100%;
+  color: var(--dark);
+  margin-bottom: 5px;
+}
+.content nav form .form-input input:focus {
+  padding: 0 56px 0 13px;
+  height: 100%;
+  border: solid 1px #666666;
+
+  border-radius: 36px 0 0 36px;
+  outline: none;
+  width: 100%;
+  color: var(--dark);
+  margin-bottom: 5px;
+}
+
+.content nav form .form-input button {
+  width: 70px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary);
+  color: var(--light);
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 0 36px 36px 0;
+  cursor: pointer;
+}
+.content nav form .form-input .clearButton {
+  position: absolute;
+  top: 4px;
+  right: 32%;
+  background-color: transparent;
+  color: #949191;
+  width: 70px;
+}
+.content nav form .form-input .clearButton:hover {
+  color: #666666;
+}
+
+.side-menu-bottom {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: auto;
+  background: transparent;
+  width: auto; /* Adjust the width as needed */
+  padding: 0px 1px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  z-index: 1000;
 }
 
-.App-link {
-  color: #61dafb;
+.side-menu-bottom .side-menu {
+  margin-top: 0;
+}
+.side-menu-profile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  width: auto; /* Adjust the width as needed */
+  padding: 2px 5px;
+  z-index: 1000;
+}
+.profileImg {
+  width: auto;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px; /* Add some space between elements */
+  margin-left: 5px;
+  margin-right: 5px;
+  scale: 1;
+}
+.side-menu-bottom .side-menu .name-flex {
+  display: flex; /* Make the container a flex container */
+  align-items: center;
+  margin: 0px; /* Vertically align the items in the center */
 }
 
-@keyframes App-logo-spin {
-  from {
+.side-menu-bottom .side-menu .name-flex h4 {
+  max-width: 180px; /* Limit the maximum width of the name */
+  white-space: wrap; /* Prevent the name from wrapping to the next line */
+  overflow: hidden; /* Hide any overflow text */
+  text-overflow: ellipsis; /* Show an ellipsis (...) for overflow text */
+  flex: 1;
+  font-size: 15px; /* Allow the name to take up available space */
+  margin-bottom: 10px;
+}
+
+.side-menu input {
+  display: none;
+}
+.side-menu .theme-toggle {
+  display: block;
+  max-width: 50px;
+  height: 25px;
+  background: var(--grey);
+  cursor: pointer;
+  position: relative;
+  border-radius: 25px;
+  transition: background 0.3s ease; /* Added a background transition */
+  scale: 0.8;
+  left: -5px;
+}
+
+.side-menu .theme-toggle::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  width: calc(50% - 4px);
+  background: var(--primary);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.side-menu #theme-toggle:checked + .theme-toggle::before {
+  left: calc(100% - 20px);
+}
+
+/* Style the checked state of the toggle switch */
+/* .side-menu-bottom #theme-toggle:checked + .theme-toggle {
+  background: var(--);
+} */
+
+/*     responsiveness    */
+@media (max-width: 1400px) {
+  .content nav form .form-input .clearButton {
+    right: 33%;
+  }
+  .content nav form .form-input input {
+    padding: 0 36px 0 13px;
+  }
+  .content nav form .form-input input:focus {
+    padding: 0 36px 0 13px;
+  }
+}
+
+@media (max-width: 580px) {
+  .sidebar.close {
+    width: 50px;
+  }
+
+  .sidebar.close ~ .content {
+    width: calc(100% - 60px);
+    left: 50px;
+  }
+  .sidebar .side-menu li {
+    height: 48px;
+    background: transparent;
+    margin-left: 0;
+    border-radius: 48px 0 0 48px;
+    padding: 4px;
+  }
+  .content nav form .form-input .clearButton {
+    right: 40%;
+    width: auto;
+  }
+  .content nav form .form-input input {
+    flex-grow: 3;
+    padding: 0 36px 0 13px;
+    height: 100%;
+    border: none;
+    background: var(--grey);
+    border-radius: 36px 0 0 36px;
+    outline: none;
+    width: 100%;
+    color: var(--dark);
+    margin-bottom: 5px;
+  }
+  .content nav form .form-input input:focus {
+    padding: 0 36px 0 13px;
+  }
+  .side-menu-bottom .theme-toggle {
+    margin-right: 25px;
+  }
+}
+
+.loaderContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  scale: 2;
+  margin-left: 5%;
+}
+
+.deleting-loaderContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  scale: 2;
+  margin-left: 5%;
+  background: #88888887;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.loader {
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  border-left-color: transparent;
+  border-radius: 50%;
+}
+
+.loader {
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  border-left-color: transparent;
+  width: 36px;
+  height: 36px;
+}
+
+.loader {
+  border: 4px solid rgba(218, 211, 211, 0.9);
+  border-left-color: transparent;
+  width: 36px;
+  height: 36px;
+  animation: spin89345 1s linear infinite;
+}
+
+@keyframes spin89345 {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+
+  100% {
     transform: rotate(360deg);
   }
+}
+
+.modal-buttons {
+  width: 100%;
+  gap: 20px;
+}
+.modal .modal-buttons button {
+  background: #68aacf;
+  color: #ffffff;
+  width: 100%;
+  border-radius: 15px;
+  border: none;
+  margin: 0;
+  height: 40px;
+  padding: 10;
+}
+
+#logout {
+  background-color: #e61f68;
+}
+#logouticon {
+  color: #e61f68;
 }

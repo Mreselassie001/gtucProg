@@ -1,0 +1,463 @@
+/* Style for the insights list */
+.insights {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  max-width: 90%;
+  justify-content: center;
+  flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
+  gap: 10px; /* Adjust the gap between items as needed */
+  margin: 75px 0px 40px 40px;
+  margin-left: 5%;
+}
+
+.insights li {
+  padding: 24px;
+  background: var(--light);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  grid-gap: 24px;
+  cursor: pointer;
+  max-width: 300px; /* Minimum width for each item */
+  flex-grow: 1;
+}
+/* .insights li:nth-child(n + 2):nth-child(-n + 8) .bx {
+  background: var(--light-primary);
+  color: var(--primary);
+} */
+/* Apply styles to specific .insights li elements */
+.insights li:nth-child(2) .bx,
+.insights li:nth-child(12) .bx,
+.insights li:nth-child(3) .bx,
+.insights li:nth-child(19) .bx,
+.insights li:nth-child(29) .bx,
+.insights li:nth-child(19) .bx,
+.insights li:nth-child(18) .bx,
+.insights li:nth-child(4) .bx {
+  background: var(--light-primary);
+  color: var(--primary);
+}
+
+.insights li:nth-child(5) .bx,
+.insights li:nth-child(16) .bx,
+.insights li:nth-child(11) .bx,
+.insights li:nth-child(28) .bx,
+.insights li:nth-child(21) .bx,
+.insights li:nth-child(25) .bx,
+.insights li:nth-child(8) .bx,
+.insights li:nth-child(13) .bx {
+  background: var(--light-warning);
+  color: var(--warning);
+}
+.insights li:nth-child(4) .bx,
+.insights li:nth-child(10) .bx,
+.insights li:nth-child(17) .bx,
+.insights li:nth-child(10) .bx,
+.insights li:nth-child(30) .bx,
+.insights li:nth-child(20) .bx,
+.insights li:nth-child(26) .bx,
+.insights li:nth-child(1) .bx {
+  background: #ffd4e1;
+  color: #fb5285;
+}
+.insights li .bx {
+  min-width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #94ebc9;
+  color: #004b3c;
+}
+
+.insights li .info h3 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.insights li .info p {
+  color: var(--dark);
+  font-weight: 600;
+  padding-right: 5px;
+}
+
+/* Style for the table container */
+
+.AdminPage .details .project-details {
+  font-size: 16px;
+  color: #000;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 15px; /* Border radius */
+}
+
+.AdminPage .details .project-details td {
+  padding: 1px 3px 1px 3px;
+}
+
+/* Rest of your CSS styles for the table... */
+
+/* Style the table */
+/* Style for the table container */
+
+/* Style for the AdminPage container */
+/* Style for the AdminPage container */
+
+.AdminPage {
+  display: flex;
+  gap: 10px; /* Gap between columns and rows */
+  align-items: center;
+  padding: 10px 200px 50px 200px;
+}
+
+/* Rest of your CSS styles... */
+
+/* Style for the project list container */
+.AdminPage .project-list {
+  list-style: none;
+  padding: 0 10% 0 10%;
+  margin: 0;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Style for each individual project item */
+.AdminPage .project {
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 16px 16px 16px;
+  height: 100%;
+  width: 100%;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style for the project title */
+.AdminPage .project h2 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  text-align: left; /* Text positioned on the left */
+  height: 100px;
+  color: #000;
+}
+.AdminPage .project i {
+  color: #000;
+}
+
+/* Style for project details (author, year, supervisor) */
+.AdminPage .project .details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: flex-end; /* Align details to the bottom */
+  margin-top: auto; /* Push details to the bottom of the container */
+  margin-bottom: 20px;
+}
+
+/* Style for the author and year */
+.AdminPage .project .details h6,
+.project .details h5 {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+}
+
+/* Style for the supervisor */
+.AdminPage .project .details h3 {
+  font-size: 16px;
+  color: #6f6f6f;
+}
+
+/* Style for the edit and delete buttons */
+.AdminPage .project .buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto; /* Push buttons to the bottom */
+}
+
+/* Style for the edit button */
+.AdminPage .project .buttons .edit-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 14px;
+  margin-right: 10px;
+  height: 40px;
+  border: none;
+  padding: 0px 20px;
+  background-color: rgba(171, 164, 175, 0.568);
+  color: rgb(11, 11, 11);
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 10px;
+  transition-duration: 0.3s;
+}
+
+/* Style for the delete button */
+.AdminPage .project .buttons .delete-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #fb5285;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out 75ms;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  justify-content: center;
+  text-decoration: none;
+  transform: translateY(0);
+  width: 100%;
+}
+
+/* 
+@media (max-width: 1400px){
+
+  .AdminPage .project-list {
+    list-style: none;
+    padding: 0 0% 0 0%;
+    margin: 0;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+} */
+@media (max-width: 1400px) {
+  .AdminPage {
+    display: flex;
+    gap: 10px; /* Gap between columns and rows */
+    margin-left: 3%;
+    align-items: center;
+    padding: 10px 0px 50px 0px;
+  }
+  .insights {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    max-width: 1000px;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
+    gap: 14px; /* Adjust the gap between items as needed */
+    margin: 12% 10% 10% 20%;
+  }
+}
+@media (max-width: 870px) {
+  .AdminPage {
+    display: flex;
+    gap: 10px; /* Gap between columns and rows */
+    margin-left: 3%;
+    align-items: center;
+    padding: 10px 100px 50px 100px;
+  }
+  .AdminPage .project h2 {
+    font-size: 17px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    text-align: left;
+    height: auto;
+  }
+}
+
+/* Common styles */
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200, 200, 200, 0.598);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  margin-top: -40px;
+}
+
+.modalContainer {
+  width: 500px;
+  height: auto;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  z-index: 999;
+  margin-left: 50px;
+}
+
+.modalContainer .title {
+  text-align: center;
+  margin-top: 0px;
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.modalContainer .title h1 {
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
+
+.titleCloseBtn {
+  display: flex;
+  justify-content: flex-end;
+  z-index: 999;
+}
+
+.titleCloseBtn button {
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.modalContainer .body {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  text-align: center;
+  z-index: 999;
+}
+
+.modalContainer .footer {
+  flex: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modalContainer .footer button {
+  width: 150px;
+  height: 45px;
+  margin: 10px;
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 999;
+}
+
+#cancelBtn {
+  background-color: crimson;
+  z-index: 999;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .modalContainer {
+    width: 80%;
+    height: auto;
+    padding: 15px;
+    max-height: 80vh;
+  }
+
+  .modalContainer .body {
+    font-size: 1.5rem;
+  }
+
+  .modalContainer .footer button {
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 868px) {
+  .AdminPage .project-list {
+    list-style: none;
+    padding: 15px;
+    margin: 0;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+    /* Change this to a single column layout */
+  }
+}
+
+@media (max-width: 568px) {
+  .AdminPage {
+    padding: 10px;
+  }
+}
+@media (max-width: 378px) {
+  .AdminPage {
+    padding: 30px;
+  }
+}
+
+.closeModal {
+  background: #fb5285;
+  color: #ffffff;
+  width: 10%;
+  margin-left: 80%;
+  padding: 3px 6px 2px 6px;
+  border-radius: 15px;
+  border: none;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 80%;
+  text-align: left;
+  gap: 30px;
+}
+
+/* Add a container div to make the table scrollable */
+.modal .table-container {
+  max-height: 300px; /* Set the desired height for the scrollable container */
+  overflow: auto; /* Add a scrollbar when the content overflows the container */
+}
+
+.modal table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modal table th,
+.modal table td {
+  padding: 8px;
+
+  border: 1px solid #000;
+}
+
+.modal table thead {
+  background-color: #cbcbcb;
+}
