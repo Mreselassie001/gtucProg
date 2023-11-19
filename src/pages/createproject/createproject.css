@@ -261,6 +261,7 @@ textarea {
 /* Default styles for Form Incomplete Modal */
 .form-incomplete-modal {
   width: 100vw;
+  top: 25px;
   height: 100vh;
   position: fixed;
   display: flex;

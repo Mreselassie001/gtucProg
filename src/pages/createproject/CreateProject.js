@@ -287,11 +287,11 @@ const CreateProject = ({ isAuth }) => {
           )}
         </button>
         {/* Form-incomplete modal */}
+      </div>
       <FormIncompleteModal
         isOpen={isFormIncompleteModalOpen}
         onClose={() => setIsFormIncompleteModalOpen(false)}
       />
-      </div>
       {showModal && !agreedToSubmit && (
         <div className="CPmodalBackground">
           <div className="CPmodalContainer">
