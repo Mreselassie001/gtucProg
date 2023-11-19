@@ -155,13 +155,7 @@ function App() {
   //--------------------------------------------------
   //------------------------------------------------
 
-  useEffect(() => {
-    const currentWindow = window.location.pathname;
-    setShowNavigation(
-      currentWindow.startsWith("/project/") ||
-        currentWindow === "/createProject"
-    );
-  }, []);
+ 
 
   return (
     <Router>
@@ -297,7 +291,7 @@ function App() {
             <button className="bx bx-menu">
               <Icon icon="mingcute:menu-fill" />
             </button>
-            {!showNavigation && (
+            
               <form action="#">
                 <div className="form-input">
                   <input
@@ -335,7 +329,7 @@ function App() {
                   )}
                 </div>
               </form>
-            )}
+            
 
             <input type="checkbox" id="theme-toggle" hidden />
           </nav>
