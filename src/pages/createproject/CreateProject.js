@@ -307,12 +307,12 @@ const CreateProject = ({ isAuth }) => {
             </div>
           </div>
         )}
+      </div>
         {/* Form-incomplete modal */}
         <FormIncompleteModal
           isOpen={isFormIncompleteModalOpen}
           onClose={() => setIsFormIncompleteModalOpen(false)}
         />
-      </div>
     </div>
   );
 };
