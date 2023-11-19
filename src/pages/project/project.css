@@ -597,13 +597,13 @@ button:active .filler {
   }
 
   .projectPage .projectHeader .title h1 {
-    font-size: 22px;
+    font-size: 26px;
     margin-top: 0%;
     /* margin-bottom: 5px; */
   }
 
   .projectPage .projectTextContainer {
-    font-size: 14px;
+    font-size: 20px;
   }
 }
 

@@ -44,6 +44,7 @@
   padding: 10px;
   margin-bottom: 10px;
   margin-top: 10px;
+  height: 50px;
   color: #000;
   border: 1px solid #cccccc;
   border-radius: 5px;
@@ -59,6 +60,7 @@
   border-radius: 5px;
   font-size: 14px;
   background-color: #ffffffbd;
+  height: 50px;
 }
 
 input {
@@ -119,47 +121,10 @@ textarea {
   color: #0056b3;
 }
 
-.createProjectPage .custum-file-upload {
-  height: 200px;
-  width: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: space-between;
-  gap: 20px;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed #cacaca;
-  background-color: rgba(255, 255, 255, 1);
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1);
-}
-
-.custum-file-upload .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.custum-file-upload .icon svg {
-  height: 80px;
-  fill: rgba(75, 85, 99, 1);
-}
-
-.createProjectPage .custum-file-upload .text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.createProjectPage .custum-file-upload .text span {
-  font-weight: 400;
-  color: rgba(75, 85, 99, 1);
-}
-
-.createProjectPage .custum-file-upload input {
-  display: none;
+.createProjectPage .file {
+  height: 57px;
+  color: #000;
+  background-color: #000;
 }
 
 /* Add this to your existing CSS */
@@ -231,6 +196,7 @@ textarea {
     border-radius: 5px;
     font-size: 14px;
     background-color: #ffffffbd;
+    height: 50px;
   }
   .createProjectPage .cpContainer {
     padding: 15px;
@@ -335,7 +301,7 @@ textarea {
   position: fixed;
   width: 100%;
   height: 100%;
-  top:5%;
+  top: 5%;
   background: #0000009e;
   display: flex;
   justify-content: center;
