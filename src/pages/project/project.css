@@ -619,7 +619,8 @@ button:active .filler {
 }
 @media (max-width: 480px) {
   .projectPage .project {
-    margin: 25%;
+    margin: 15%;
+    scale: 0.9;
   }
   .projectPage .project .title {
     margin-top: 6px;
@@ -744,7 +745,7 @@ button:active .filler {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index:9999;
 }
 
 .modal-content {

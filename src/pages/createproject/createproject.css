@@ -258,26 +258,33 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
-  padding: 0;
+  background: #201f1f37;
+  z-index: 9999;
+  right:-50;
+  margin-right: 20px;
 }
 
 .form-incomplete-modal .modal-container {
-  width: 300px;
+  width: auto;
+  max-width: 300px;
+  position: fixed;
   height: auto;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
-  padding: 5px;
-  z-index: 999;
+  padding: 15px;
+  z-index: 9999;
+  margin: 0px 20% 0px 20%;
 
 }
 
 .form-incomplete-modal .modal-container .modal-text {
   text-align: center;
   margin-top: 0px;
+  display: flex;
+  flex-wrap: wrap;
   z-index: 999;
   justify-content: center;
   align-items: center;
@@ -301,7 +308,7 @@ textarea {
 }
 
 /* Responsive Styles */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .form-incomplete-modal .modal-container {
     width: 60%;
     height: auto;
@@ -318,7 +325,7 @@ textarea {
     height: 40px;
     font-size: 18px;
   }
-}
+} */
 
 
 

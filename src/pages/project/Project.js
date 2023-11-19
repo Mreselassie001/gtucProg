@@ -20,12 +20,12 @@ const Project = ({ projectCollectionRef }) => {
   const [showDeletingModal, setShowDeletingModal] = useState(false);
   const [showDeletedModal, setShowDeletedModal] = useState(false);
   const [isChecked, setIsChecked] = useState(false); // State for the checkbox
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [value, copy] = useCopyToClipboard();
   const { projectId } = useParams();
   const [project, setProject] = useState(null);
   const [isAuth] = useState(localStorage.getItem("isAuth"));
   const [isAdminAuth] = useState(localStorage.getItem("isAdminAuth"));
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
   const storage = getStorage();
 
   useEffect(() => {
@@ -91,8 +91,10 @@ const Project = ({ projectCollectionRef }) => {
   }
 
   const handleDownload = async () => {
-    if (isButtonClicked) return;
     try {
+      // Disable the button
+      setIsButtonDisabled(true);
+
       const fileRef = ref(storage, project.fileRef);
       const downloadURL = await getDownloadURL(fileRef);
 
@@ -111,6 +113,9 @@ const Project = ({ projectCollectionRef }) => {
       document.body.removeChild(link);
     } catch (error) {
       console.error("Error getting download URL:", error);
+    } finally {
+      // Enable the button after download attempt (success or failure)
+      setIsButtonDisabled(false);
     }
   };
 
@@ -270,7 +275,7 @@ ${window.location.href}`;
             <button
               className="downloadButton"
               onClick={handleDownload}
-              disabled={isButtonClicked}
+              disabled={isButtonDisabled}
             >
               <span className="button-content">View PDF</span>
             </button>

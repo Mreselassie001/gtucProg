@@ -4,6 +4,7 @@ import "react-circular-progressbar/dist/styles.css";
 import { Link } from "react-router-dom";
 import { db } from "../../../firebase-config";
 import "./adminProject.css";
+import { Icon } from "@iconify/react";
 
 const AdminProjectList = ({
   isAuth,
@@ -94,7 +95,7 @@ const AdminProjectList = ({
           <div className="modalContainer">
             <div className="titleCloseBtn">
               <button onClick={() => setShowDeleteConfirmation(false)}>
-                X
+                <Icon icon="mingcute:close-fill" />
               </button>
             </div>
             <div className="title">
