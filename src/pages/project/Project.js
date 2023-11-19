@@ -90,34 +90,34 @@ const Project = ({ projectCollectionRef }) => {
     );
   }
 
-  const handleDownload = async () => {
-    try {
-      setIsButtonDisabled(true);
-      console.log("dissabled");
-      // Disable the button
+ const handleDownload = async () => {
+   try {
+     setIsButtonDisabled(true);
+     console.log("Disabled");
+     // Disable the button
 
-      const fileRef = ref(storage, project.fileRef);
-      const downloadURL = await getDownloadURL(fileRef);
+     const fileRef = ref(storage, project.fileRef);
+     const downloadURL = await getDownloadURL(fileRef);
 
-      const link = document.createElement("a");
-      link.href = downloadURL;
-      link.download = "filename";
-      link.style.display = "none";
+     const link = document.createElement("a");
+     link.href = downloadURL;
+     link.download = "filename";
+     link.style.display = "none";
 
-      // Append the link to the document
-      document.body.appendChild(link);
+     // Append the link to the document
+     document.body.appendChild(link);
 
-      // Trigger a click on the link
-      link.click();
+     // Trigger a click on the link
+     link.click();
+   } catch (error) {
+     console.error("Error getting download URL:", error);
+   } finally {
+     // Enable the button after download attempt (success or failure)
+     setIsButtonDisabled(false);
+   }
+ };
 
-      // Remove the link from the document
-      document.body.removeChild(link);
-    } catch (error) {
-      console.error("Error getting download URL:", error);
-    } finally {
-      // Enable the button after download attempt (success or failure)
-    }
-  };
+
 
   const copyProjectDetails = () => {
     // Create a text string containing the project details and the current page URL
