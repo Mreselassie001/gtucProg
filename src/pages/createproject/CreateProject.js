@@ -286,7 +286,6 @@ const CreateProject = ({ isAuth }) => {
             "Submit Project"
           )}
         </button>
-      </div>
         {showModal && !agreedToSubmit && (
           <div className="CPmodalBackground">
             <div className="CPmodalContainer">
@@ -324,6 +323,7 @@ const CreateProject = ({ isAuth }) => {
         isOpen={isFormIncompleteModalOpen}
         onClose={() => setIsFormIncompleteModalOpen(false)}
       />
+      </div>
     </div>
   );
 };
