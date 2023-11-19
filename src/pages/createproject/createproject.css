@@ -262,12 +262,13 @@ textarea {
 .form-incomplete-modal {
   width: 100vw;
   top: 25px;
+  background-color: #1413137f;
   height: 100vh;
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 999;
   padding: 0;
 }
 
