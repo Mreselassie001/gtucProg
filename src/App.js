@@ -157,7 +157,7 @@ function App() {
   return (
     <Router>
       <>
-        <div className="sidebar">
+        <div className="sidebar close">
           <div className="logo">
             <img src="GCTULogo.png" alt="" className="bx bx-code-alt" />
             <div className="logo-name">
@@ -411,7 +411,6 @@ function App() {
             />
           }
         />
-       
       </Routes>
     </Router>
   );
