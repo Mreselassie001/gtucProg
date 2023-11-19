@@ -92,8 +92,9 @@ const Project = ({ projectCollectionRef }) => {
 
   const handleDownload = async () => {
     try {
-      // Disable the button
       setIsButtonDisabled(true);
+      console.log("dissabled");
+      // Disable the button
 
       const fileRef = ref(storage, project.fileRef);
       const downloadURL = await getDownloadURL(fileRef);
@@ -115,7 +116,6 @@ const Project = ({ projectCollectionRef }) => {
       console.error("Error getting download URL:", error);
     } finally {
       // Enable the button after download attempt (success or failure)
-      setIsButtonDisabled(false);
     }
   };
 
