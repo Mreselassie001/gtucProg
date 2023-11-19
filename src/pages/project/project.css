@@ -58,6 +58,7 @@ button:active {
   width: 100%;
   /* grid-template-columns: repeat(2, 1fr); */
   margin-bottom: 34px;
+  margin-top: 34px;
   /* margin-top: 34px; */
   align-items: center;
   justify-content: center;
@@ -153,8 +154,8 @@ button:active {
   display: grid;
   grid-template-columns: 3fr 1fr;
   border: 1px solid #333;
-  margin-bottom: 20px;
   padding: 10px;
+  margin: 0;
   border-radius: 15px;
   justify-content: space-between;
   align-items: center;
@@ -658,6 +659,9 @@ button:active .filler {
   }
 }
 @media (max-width: 410px) {
+  .projectPage{
+    margin-left: 7%;
+  }
   .projectPage .project .title {
     margin-top: 6px;
     margin-bottom: 40px;
