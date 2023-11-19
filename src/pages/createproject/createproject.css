@@ -333,7 +333,7 @@ textarea {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  background-color: #b8b8b857;
+  background-color: rgba(184, 184, 184, 0.34);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -341,7 +341,8 @@ textarea {
 }
 
 .createProjectPage .CPmodalContainer {
-  width: 500px;
+  width: 300px;
+  max-width: 400px;
   height: auto;
   border-radius: 12px;
   background-color: white;
@@ -349,29 +350,23 @@ textarea {
   display: flex;
   flex-direction: column;
   padding: 25px;
-  z-index: 999;
-  margin-left: 0px;
+  z-index: 1000;
 }
 
 .createProjectPage .CPmodalContainer .title {
   text-align: center;
-  margin-top: 0px;
-  z-index: 999;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
+  padding: 0;
   margin-bottom: 30px;
 }
 
 .CPmodalContainer .title h1 {
-  margin: 0;
-  padding: 0;
   color: #000;
 }
 
 .createProjectPage .titleCloseBtn {
   display: flex;
   justify-content: flex-end;
-  z-index: 999;
 }
 
 .createProjectPage .titleCloseBtn button {
@@ -379,26 +374,23 @@ textarea {
   border: none;
   font-size: 25px;
   cursor: pointer;
-  z-index: 999;
 }
 
 .createProjectPage .CPmodalContainer .body {
-  flex: 50%;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
   text-align: center;
-  z-index: 999;
   margin-bottom: 10px;
 }
 
 .createProjectPage .CPmodalContainer .footer {
-  flex: 10%;
+  flex: 0.2;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
 }
 
 .createProjectPage .CPmodalContainer .footer button {
@@ -411,16 +403,14 @@ textarea {
   border-radius: 8px;
   font-size: 20px;
   cursor: pointer;
-  z-index: 999;
 }
 
 .createProjectPage .cancelBtn {
   background-color: crimson;
-  z-index: 999;
 }
 
-.text{
-  height: 400px;
+.text {
+  height: 300px;
   overflow-x: hidden;
   border: #00000034 1px solid;
   padding: 15px;
@@ -429,20 +419,8 @@ textarea {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  .createProjectPage .CPmodalBackground {
-    width: 100vw;
-    height: 200%;
-    position: fixed;
-    background-color: rgba(255, 255, 255, 0.55);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-  }
   .createProjectPage .CPmodalContainer {
-    width: 60%;
-    height: auto;
-    padding: 15px;
+    width: 90%;
     max-height: 80vh;
   }
 
