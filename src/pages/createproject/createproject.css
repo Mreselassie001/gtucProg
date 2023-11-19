@@ -9,7 +9,7 @@
   margin-left: 7%;
 }
 
-.cpContainer {
+.createProjectPage .cpContainer {
   margin-bottom: 100px;
   display: flex;
   flex-direction: column;
@@ -26,20 +26,20 @@
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.cpContainer h1 {
+.createProjectPage .cpContainer h1 {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
   color: #f65757;
 }
 
-.cpContainer label {
+.createProjectPage .cpContainer label {
   font-weight: bold;
   font-size: 14px;
 }
 
-input,
-textarea {
+.createProjectPage input,
+.createProjectPage textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -48,7 +48,7 @@ textarea {
   font-size: 14px;
   background-color: #ffffffbd;
 }
-select {
+.createProjectPage select {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -189,11 +189,11 @@ textarea {
 
 /* For screens with width up to 680px */
 @media (max-width: 880px) {
-  .cpContainer {
+  .createProjectPage .cpContainer {
     width: auto;
     padding: 15px;
     font-size: 14px;
-    margin: 0 55px 0 20px;
+    margin: 0 13% 0 7%;
   }
 
   .cpContainer label {
