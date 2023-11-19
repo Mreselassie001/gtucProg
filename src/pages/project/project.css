@@ -281,7 +281,7 @@ button:active {
 
 .projectPage .project .projectTextContainer {
   height: auto;
-  /* min-height: ; */
+  min-width: none;
   /* Adjust the maximum height based on your design */
   width: auto;
   overflow: auto; /* Allow scrolling if content overflows */
@@ -559,7 +559,6 @@ button:active .filler {
 
   .projectPage .projectTextContainer {
     font-size: 16px;
-    height: 150px;
   }
 }
 
@@ -570,7 +569,7 @@ button:active .filler {
   }
   .projectPage .project {
     width: auto;
-    margin: 10% 10% 4% 12%;
+    margin: 10% 10% 4% 10%;
   }
 
   a {
@@ -598,7 +597,6 @@ button:active .filler {
 
   .projectPage .projectTextContainer {
     font-size: 14px;
-    height: 120px;
   }
 }
 
@@ -621,7 +619,7 @@ button:active .filler {
 }
 @media (max-width: 480px) {
   .projectPage .project {
-    margin: 15%;
+    margin: 25%;
   }
   .projectPage .project .title {
     margin-top: 6px;

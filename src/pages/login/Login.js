@@ -11,7 +11,7 @@ const Login = ({ setIsAuth }) => {
 
   const signInWithGoogle = async () => {
     if (isButtonClicked) return;
-
+ 
     try {
       setIsButtonClicked(true);
 

@@ -25,6 +25,7 @@ const Project = ({ projectCollectionRef }) => {
   const [project, setProject] = useState(null);
   const [isAuth] = useState(localStorage.getItem("isAuth"));
   const [isAdminAuth] = useState(localStorage.getItem("isAdminAuth"));
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
   const storage = getStorage();
 
   useEffect(() => {
@@ -89,29 +90,29 @@ const Project = ({ projectCollectionRef }) => {
     );
   }
 
-const handleDownload = async () => {
-  try {
-    const fileRef = ref(storage, project.fileRef);
-    const downloadURL = await getDownloadURL(fileRef);
+  const handleDownload = async () => {
+    if (isButtonClicked) return;
+    try {
+      const fileRef = ref(storage, project.fileRef);
+      const downloadURL = await getDownloadURL(fileRef);
 
-    const link = document.createElement("a");
-    link.href = downloadURL;
-    link.download = "filename";
-    link.style.display = "none";
+      const link = document.createElement("a");
+      link.href = downloadURL;
+      link.download = "filename";
+      link.style.display = "none";
 
-    // Append the link to the document
-    document.body.appendChild(link);
+      // Append the link to the document
+      document.body.appendChild(link);
 
-    // Trigger a click on the link
-    link.click();
+      // Trigger a click on the link
+      link.click();
 
-    // Remove the link from the document
-    document.body.removeChild(link);
-  } catch (error) {
-    console.error("Error getting download URL:", error);
-  }
-};
-
+      // Remove the link from the document
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Error getting download URL:", error);
+    }
+  };
 
   const copyProjectDetails = () => {
     // Create a text string containing the project details and the current page URL
@@ -266,7 +267,11 @@ ${window.location.href}`;
 
         {isAuth && project.fileRef && (
           <div className="button-container">
-            <button className="downloadButton" onClick={handleDownload}>
+            <button
+              className="downloadButton"
+              onClick={handleDownload}
+              disabled={isButtonClicked}
+            >
               <span className="button-content">View PDF</span>
             </button>
 
