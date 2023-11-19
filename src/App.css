@@ -24,6 +24,8 @@
 
 .bx {
   font-size: 1.7rem;
+  scale: 0.9;
+  padding-top: 7px;
 }
 
 a {
