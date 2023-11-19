@@ -159,16 +159,13 @@ button:active {
   border-radius: 15px;
   justify-content: space-between;
   align-items: center;
-  text-align: left;
-  font-weight: 300;
-  font-size: 14px;
   gap: 20px;
 }
 
 .reference button {
   margin: 0;
-  width: 100px;
-  padding: 10px;
+  width: 100%;
+  padding: 10px 13px 10px 13px;
   justify-self: flex-end;
 }
 
@@ -649,6 +646,13 @@ button:active .filler {
   .reference {
     grid-template-columns: 1fr;
   }
+  .reference p {
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    font-weight: 300;
+    font-size: 14px;
+  }
   .button-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -659,7 +663,7 @@ button:active .filler {
   }
 }
 @media (max-width: 410px) {
-  .projectPage{
+  .projectPage {
     margin-left: 7%;
   }
   .projectPage .project .title {
