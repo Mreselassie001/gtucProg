@@ -330,10 +330,8 @@ textarea {
 
 /* Default styles for the Project Submission Agreement Modal */
 .createProjectPage .CPmodalBackground {
-  width: 100vw;
-  height: 100vh;
   position: fixed;
-  background-color: rgba(184, 184, 184, 0.34);
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -419,10 +417,10 @@ textarea {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  .createProjectPage .CPmodalContainer {
+  /* .createProjectPage .CPmodalContainer {
     width: 90%;
     max-height: 80vh;
-  }
+  } */
 
   .createProjectPage .CPmodalContainer .body {
     font-size: 1.1rem;
