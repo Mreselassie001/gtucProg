@@ -94,17 +94,24 @@ const handleDownload = async () => {
     const fileRef = ref(storage, project.fileRef);
     const downloadURL = await getDownloadURL(fileRef);
 
-    // Create a new tab to trigger the download
-    const newTab = window.open(downloadURL, "_blank");
+    const link = document.createElement("a");
+    link.href = downloadURL;
+    link.download = "filename";
+    link.style.display = "none";
 
-    // If the new tab is null, it means the popup was blocked
-    if (!newTab) {
-      console.error("Popup blocked. Please allow popups and try again.");
-    }
+    // Append the link to the document
+    document.body.appendChild(link);
+
+    // Trigger a click on the link
+    link.click();
+
+    // Remove the link from the document
+    document.body.removeChild(link);
   } catch (error) {
     console.error("Error getting download URL:", error);
   }
 };
+
 
   const copyProjectDetails = () => {
     // Create a text string containing the project details and the current page URL
