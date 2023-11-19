@@ -286,44 +286,44 @@ const CreateProject = ({ isAuth }) => {
             "Submit Project"
           )}
         </button>
-        {showModal && !agreedToSubmit && (
-          <div className="CPmodalBackground">
-            <div className="CPmodalContainer">
-              <div className="title">
-                <h1>Project Submission Agreement</h1>
-              </div>
-              <div className="body">
-                <p className="text">
-                  By submitting your project or documentation, you confirm
-                  ownership and grant the platform permission to share it within
-                  the community. You agree to the accuracy and authenticity of
-                  your work, acknowledging the public accessibility. While
-                  retaining removal rights, it's crucial to align with
-                  collaborators, adhere to guidelines, and accept that the
-                  process may take time. 
-                  <br />
-                  <br />
-                  Proceed only if you agree; contact us
-                  with any queries. Non-agreement implies refraining from
-                  submission. For questions or concerns, reach out to
-                  administrators before clicking "Submit."
-                </p>
-              </div>
-              <div className="footer">
-                <button onClick={handleAgreeSubmit}>I Agree</button>
-                <button id="cancelBtn" onClick={() => setShowModal(false)}>
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-      {/* Form-incomplete modal */}
+        {/* Form-incomplete modal */}
+      </div>
       <FormIncompleteModal
         isOpen={isFormIncompleteModalOpen}
         onClose={() => setIsFormIncompleteModalOpen(false)}
       />
-      </div>
+      {showModal && !agreedToSubmit && (
+        <div className="CPmodalBackground">
+          <div className="CPmodalContainer">
+            <div className="title">
+              <h1>Project Submission Agreement</h1>
+            </div>
+            <div className="body">
+              <p className="text">
+                By submitting your project or documentation, you confirm
+                ownership and grant the platform permission to share it within
+                the community. You agree to the accuracy and authenticity of
+                your work, acknowledging the public accessibility. While
+                retaining removal rights, it's crucial to align with
+                collaborators, adhere to guidelines, and accept that the process
+                may take time.
+                <br />
+                <br />
+                Proceed only if you agree; contact us with any queries.
+                Non-agreement implies refraining from submission. For questions
+                or concerns, reach out to administrators before clicking
+                "Submit."
+              </p>
+            </div>
+            <div className="footer">
+              <button onClick={handleAgreeSubmit}>I Agree</button>
+              <button id="cancelBtn" onClick={() => setShowModal(false)}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

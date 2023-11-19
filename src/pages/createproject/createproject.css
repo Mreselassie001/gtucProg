@@ -331,7 +331,10 @@ textarea {
 /* Default styles for the Project Submission Agreement Modal */
 .createProjectPage .CPmodalBackground {
   position: fixed;
-  top: 0;
+  width: 100%;
+  height: 100%;
+  top:5%;
+  background: #0000009e;
   display: flex;
   justify-content: center;
   align-items: center;
