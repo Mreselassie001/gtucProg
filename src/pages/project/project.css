@@ -613,7 +613,7 @@ button:active .filler {
     margin-top: 6px;
     margin-bottom: 40px;
     height: auto;
-    font-size: 13px;
+    font-size: 17px;
   }
   .projectPage .project .projectTextContainer {
     margin-top: 6px;
@@ -633,13 +633,13 @@ button:active .filler {
     margin-top: 6px;
     margin-bottom: 40px;
     height: auto;
-    font-size: 13px;
+    font-size: 16px;
   }
   .projectPage .project .projectTextContainer {
     margin-top: 6px;
   }
   .projectPage .projectHeader .title h1 {
-    font-size: 20px;
+    font-size: 26px;
     margin-top: 2%;
     /* margin-bottom: 5px; */
   }
@@ -664,9 +664,10 @@ button:active .filler {
   }
   .projectPage .project .projectTextContainer {
     margin-top: 6px;
+    font-size: 18px;
   }
   .projectPage .projectHeader .title h1 {
-    font-size: 18px;
+    font-size: 23px;
     margin-top: 2%;
     /* margin-bottom: 5px; */
   }
