@@ -154,12 +154,12 @@ button:active {
   grid-template-columns: 3fr 1fr;
   border: 1px solid #333;
   margin-bottom: 20px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 15px;
   justify-content: space-between;
   align-items: center;
   text-align: left;
-  font-weight: 100;
+  font-weight: 300;
   font-size: 14px;
   gap: 20px;
 }
