@@ -89,22 +89,23 @@ const Project = ({ projectCollectionRef }) => {
     );
   }
 
-  const handleDownload = async () => {
-    try {
-      const fileRef = ref(storage, project.fileRef);
-      const downloadURL = await getDownloadURL(fileRef);
+const handleDownload = async () => {
+  try {
+    const fileRef = ref(storage, project.fileRef);
+    const downloadURL = await getDownloadURL(fileRef);
 
-      const link = document.createElement("a");
-      link.href = downloadURL;
-      link.download = "filename";
-      link.target = "_blank";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (error) {
-      console.error("Error getting download URL:", error);
+    // Create a new tab to trigger the download
+    const newTab = window.open(downloadURL, "_blank");
+
+    // If the new tab is null, it means the popup was blocked
+    if (!newTab) {
+      console.error("Popup blocked. Please allow popups and try again.");
     }
-  };
+  } catch (error) {
+    console.error("Error getting download URL:", error);
+  }
+};
+
   const copyProjectDetails = () => {
     // Create a text string containing the project details and the current page URL
     const projectDetailsText = `${project.title}, ${project.studentName}, ${project.year}, GCTUProg,
