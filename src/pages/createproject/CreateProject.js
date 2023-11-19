@@ -286,6 +286,7 @@ const CreateProject = ({ isAuth }) => {
             "Submit Project"
           )}
         </button>
+      </div>
         {showModal && !agreedToSubmit && (
           <div className="CPmodalBackground">
             <div className="CPmodalContainer">
@@ -293,9 +294,20 @@ const CreateProject = ({ isAuth }) => {
                 <h1>Project Submission Agreement</h1>
               </div>
               <div className="body">
-                <p>
-                  By clicking "I Agree," you confirm that you want to submit
-                  this project. Are you sure you want to proceed?
+                <p className="text">
+                  By submitting your project or documentation, you confirm
+                  ownership and grant the platform permission to share it within
+                  the community. You agree to the accuracy and authenticity of
+                  your work, acknowledging the public accessibility. While
+                  retaining removal rights, it's crucial to align with
+                  collaborators, adhere to guidelines, and accept that the
+                  process may take time. 
+                  <br />
+                  <br />
+                  Proceed only if you agree; contact us
+                  with any queries. Non-agreement implies refraining from
+                  submission. For questions or concerns, reach out to
+                  administrators before clicking "Submit."
                 </p>
               </div>
               <div className="footer">
@@ -307,12 +319,11 @@ const CreateProject = ({ isAuth }) => {
             </div>
           </div>
         )}
-      </div>
-        {/* Form-incomplete modal */}
-        <FormIncompleteModal
-          isOpen={isFormIncompleteModalOpen}
-          onClose={() => setIsFormIncompleteModalOpen(false)}
-        />
+      {/* Form-incomplete modal */}
+      <FormIncompleteModal
+        isOpen={isFormIncompleteModalOpen}
+        onClose={() => setIsFormIncompleteModalOpen(false)}
+      />
     </div>
   );
 };
