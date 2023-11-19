@@ -16,6 +16,7 @@ import { debounce } from "lodash";
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
+  const [showNavigation, setShowNavigation] = useState(false);
   const [isAdminAuth, setIsAdminAuth] = useState(
     localStorage.getItem("isAdminAuth")
   );
@@ -154,6 +155,14 @@ function App() {
   //--------------------------------------------------
   //------------------------------------------------
 
+  useEffect(() => {
+    const currentWindow = window.location.pathname;
+    setShowNavigation(
+      currentWindow.startsWith("/project/") ||
+        currentWindow === "/createProject"
+    );
+  }, []);
+
   return (
     <Router>
       <>
@@ -288,43 +297,45 @@ function App() {
             <button className="bx bx-menu">
               <Icon icon="mingcute:menu-fill" />
             </button>
-            <form action="#">
-              <div className="form-input">
-                <input
-                  placeholder="search.."
-                  name="text"
-                  type="text"
-                  value={searchText}
-                  onChange={(e) => setSearchText(e.target.value)}
-                />
+            {!showNavigation && (
+              <form action="#">
+                <div className="form-input">
+                  <input
+                    placeholder="search.."
+                    name="text"
+                    type="text"
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                  />
 
-                <button
-                  className="search-btn"
-                  type="submit"
-                  onClick={(e) => {
-                    e.preventDefault(); // Prevent the default form submission
-                    setSearchTerm(searchText);
-                  }}
-                >
-                  <i className="bx bx-search">
-                    <Icon icon="iconamoon:search-bold" />
-                  </i>
-                </button>
-                {searchText && (
                   <button
-                    className="clearButton"
+                    className="search-btn"
+                    type="submit"
                     onClick={(e) => {
-                      e.preventDefault();
-                      handleClearSearch();
+                      e.preventDefault(); // Prevent the default form submission
+                      setSearchTerm(searchText);
                     }}
                   >
                     <i className="bx bx-search">
-                      <Icon icon="ep:close-bold" />
+                      <Icon icon="iconamoon:search-bold" />
                     </i>
                   </button>
-                )}
-              </div>
-            </form>
+                  {searchText && (
+                    <button
+                      className="clearButton"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleClearSearch();
+                      }}
+                    >
+                      <i className="bx bx-search">
+                        <Icon icon="ep:close-bold" />
+                      </i>
+                    </button>
+                  )}
+                </div>
+              </form>
+            )}
 
             <input type="checkbox" id="theme-toggle" hidden />
           </nav>
