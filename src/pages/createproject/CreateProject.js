@@ -70,8 +70,11 @@ const CreateProject = ({ isAuth }) => {
 
     setIsSubmitting(true);
   };
+  const [showButtons, setShowButtons] = useState(true);
 
   const handleAgreeSubmit = async () => {
+    // Update state to hide buttons and show "Submitting..."
+    setShowButtons(false);
     const projectId = await createProject();
     if (projectId) {
       await uploadFile(projectId);
@@ -316,10 +319,16 @@ const CreateProject = ({ isAuth }) => {
               </p>
             </div>
             <div className="footer">
-              <button onClick={handleAgreeSubmit}>I Agree</button>
-              <button id="cancelBtn" onClick={() => setShowModal(false)}>
-                Cancel
-              </button>
+              {showButtons ? (
+                <>
+                  <button onClick={handleAgreeSubmit}>I Agree</button>
+                  <button id="cancelBtn" onClick={() => setShowModal(false)}>
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <p>Submitting...</p>
+              )}
             </div>
           </div>
         </div>
