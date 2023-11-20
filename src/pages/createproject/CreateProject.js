@@ -50,7 +50,7 @@ const CreateProject = ({ isAuth }) => {
   const [agreedToSubmit, setAgreedToSubmit] = useState(false);
   const [isFormComplete, setIsFormComplete] = useState(true); // State to check form completion
   const navigate = useNavigate();
-
+  setChecked(false);
   const handleCourseChange = (event) => {
     setSelectedCourse(event.target.value);
   };
@@ -65,6 +65,7 @@ const CreateProject = ({ isAuth }) => {
   const handleCreateProject = async () => {
     if (!validateForm()) {
       setIsFormIncompleteModalOpen(true);
+    
       return;
     }
 
@@ -100,6 +101,8 @@ const CreateProject = ({ isAuth }) => {
     }
     // Set the form completion state to true
     setIsFormComplete(true);
+      
+    isFormComplete();
     return true;
   };
 
@@ -140,6 +143,8 @@ const CreateProject = ({ isAuth }) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setUploadProgress(progress);
+        uploadProgress();
+
       },
       (error) => {
         console.error("Error uploading file:", error);
@@ -152,7 +157,7 @@ const CreateProject = ({ isAuth }) => {
     );
   };
 
-  useEffect(() => {
+  useEffect((isAuth, navigate) => {
     if (!isAuth) {
       navigate("/login");
     }
@@ -264,7 +269,7 @@ const CreateProject = ({ isAuth }) => {
           onClick={() => {
             // Check form completion before showing the modal
             if (validateForm()) {
-              setShowModal(true);
+              setShowModal(true);handleCreateProject()
             } else {
               // Show the form-incomplete modal
               setIsFormIncompleteModalOpen(true);
@@ -272,22 +277,7 @@ const CreateProject = ({ isAuth }) => {
           }}
           disabled={isSubmitting}
         >
-          {isSubmitting ? (
-            <div className="uploading">
-              <div className="progress-bar-container">
-                <progress
-                  className="progress-bar"
-                  value={uploadProgress}
-                  max="100"
-                  style={{
-                    "--clr": "#003147",
-                  }}
-                />
-              </div>
-            </div>
-          ) : (
-            "Submit Project"
-          )}
+         
         </button>
         {/* Form-incomplete modal */}
       </div>

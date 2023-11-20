@@ -1,8 +1,12 @@
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import "react-circular-progressbar/dist/styles.css";
 import { Link } from "react-router-dom";
 import { db } from "../../../firebase-config";
+import {
+  deleteObject,
+  getStorage,
+  ref,
+} from "firebase/storage";
 import "./adminProject.css";
 import { Icon } from "@iconify/react";
 
@@ -14,8 +18,9 @@ const AdminProjectList = ({
 }) => {
   const [projectList, setProjectList] = useState([]);
   const [online, setOnline] = useState(navigator.onLine);
-  const [projectToDelete, setProjectToDelete] = useState(null); // State to store the project to be deleted
-  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); // State to control the visibility of the delete confirmation
+  const [projectToDelete, setProjectToDelete] = useState(null);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const storage = getStorage(); // Add this line to get the storage instance
 
   const projectCollectionRef = collection(db, "project");
 
@@ -25,20 +30,7 @@ const AdminProjectList = ({
       setProjectList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getProject();
-  }, []);
-
-  const deleteProject = async (projectId) => {
-    try {
-      const projectRef = doc(db, "project", projectId);
-      await deleteDoc(projectRef);
-      // Remove the deleted project from the list
-      setProjectList((prevList) =>
-        prevList.filter((project) => project.id !== projectId)
-      );
-    } catch (error) {
-      console.error("Error deleting project:", error);
-    }
-  };
+  });
 
   const filteredProjects = projectList.filter(
     (project) =>
@@ -68,6 +60,27 @@ const AdminProjectList = ({
       deleteProject(projectToDelete);
       setProjectToDelete(null);
       setShowDeleteConfirmation(false);
+    }
+  };
+
+  const deleteProject = async (projectId) => {
+    try {
+      const project = projectList.find((project) => project.id === projectId);
+
+      if (project.fileRef) {
+        const fileRef = ref(storage, project.fileRef);
+        await deleteObject(fileRef);
+      }
+
+      const projectRef = doc(db, "project", projectId);
+      await deleteDoc(projectRef);
+
+      // Remove the deleted project from the list
+      setProjectList((prevList) =>
+        prevList.filter((project) => project.id !== projectId)
+      );
+    } catch (error) {
+      console.error("Error deleting project:", error);
     }
   };
 
@@ -130,23 +143,25 @@ const AdminProjectList = ({
                       </div>
                     </div>
                     <div className="details">
-                      <table class="project-details">
-                        <tr>
-                          <td>By:</td>
-                          <td>
-                            <i>{project.studentName}</i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Supervisor: </td>
-                          <td>
-                            <i>{project.supervisor}</i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Year:</td>
-                          <td>{project.year}</td>
-                        </tr>
+                      <table className="project-details">
+                        <tbody>
+                          <tr>
+                            <td>By:</td>
+                            <td>
+                              <i>{project.studentName}</i>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Supervisor: </td>
+                            <td>
+                              <i>{project.supervisor}</i>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Year:</td>
+                            <td>{project.year}</td>
+                          </tr>
+                        </tbody>
                       </table>
                     </div>
                   </div>

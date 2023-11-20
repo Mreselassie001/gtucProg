@@ -20,21 +20,7 @@ const Home = ({ isAuth, searchTerm, setSearchTerm, setSearchText }) => {
       setProjectLists(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getProject();
-  }, []);
 
-  const filteredProjects = projectList.filter(
-    (project) =>
-      project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.studentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.supervisor.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.projectText.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.selectedCourse.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  console.log("searchTerm:", searchTerm); // Add this console log
-  console.log("filteredProjects:", filteredProjects);
-
-  useEffect(() => {
     // Check for internet connectivity
     const handleOnlineStatusChange = () => {
       setOnline(navigator.onLine);
@@ -47,7 +33,19 @@ const Home = ({ isAuth, searchTerm, setSearchTerm, setSearchText }) => {
       window.removeEventListener("online", handleOnlineStatusChange);
       window.removeEventListener("offline", handleOnlineStatusChange);
     };
-  }, []);
+  });
+  const filteredProjects = projectList.filter(
+    (project) =>
+      project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.studentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.supervisor.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.projectText.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.selectedCourse.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  console.log("searchTerm:", searchTerm); // Add this console log
+  console.log("filteredProjects:", filteredProjects);
+
 
   if (!online) {
     return (

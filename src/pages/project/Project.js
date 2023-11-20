@@ -21,7 +21,7 @@ const Project = ({ projectCollectionRef }) => {
   const [showDeletedModal, setShowDeletedModal] = useState(false);
   const [isChecked, setIsChecked] = useState(false); // State for the checkbox
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const [value, copy] = useCopyToClipboard();
+  const [CopyValue, copy] = useCopyToClipboard();
   const { projectId } = useParams();
   const [project, setProject] = useState(null);
   const [isAuth] = useState(localStorage.getItem("isAuth"));
@@ -126,6 +126,7 @@ ${window.location.href}`;
 
     // Use the `copy` function from useCopyToClipboard to copy the text to the clipboard
     copy(projectDetailsText);
+    CopyValue()
     alert("Reference copied to clipboard");
   };
 
@@ -141,9 +142,9 @@ ${window.location.href}`;
     setShowDeletingModal(true);
   };
 
-  const hideDeletingMessage = () => {
-    setShowDeletingModal(false);
-  };
+  // const hideDeletingMessage = () => {
+  //   setShowDeletingModal(false);
+  // };
 
   const showDeletedMessage = () => {
     setShowDeletedModal(true);
@@ -151,6 +152,7 @@ ${window.location.href}`;
 
   const hideDeletedMessage = () => {
     setShowDeletedModal(false);
+    showDeletedModal();
   };
 
   const deleteProject = async () => {
@@ -167,6 +169,8 @@ ${window.location.href}`;
 
     setIsDeleting(false);
     showDeletedMessage(); // Show the "Project deleted successfully" modal
+    isDeleting()
+
 
     setTimeout(() => {
       hideDeletedMessage();
@@ -264,7 +268,7 @@ ${window.location.href}`;
 
         <div className="details-flex">
           {" "}
-          <img className="profileimg" src={project.author.image} />{" "}
+          <img className="profileimg" src={project.author.image} alt=""/>{" "}
           <h3> {project.author.name}</h3>
         </div>
 

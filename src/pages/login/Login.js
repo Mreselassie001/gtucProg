@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { auth, provider } from "../../firebase-config";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import { Icon } from "@iconify/react";
@@ -16,7 +16,6 @@ const Login = ({ setIsAuth }) => {
       setIsButtonClicked(true);
 
       const result = await signInWithPopup(auth, provider);
-      const { accessToken } = GoogleAuthProvider.credentialFromResult(result);
       const { displayName, photoURL } = result.user;
 
       // Save user information to localStorage
@@ -28,8 +27,6 @@ const Login = ({ setIsAuth }) => {
       navigate("/");
     } catch (error) {
       // Handle Errors here.
-      const { code, message, email } = error;
-      const credential = GoogleAuthProvider.credentialFromError(error);
 
       // Handle network error
       console.error("Network error:", error);
