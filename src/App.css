@@ -266,7 +266,7 @@ button{
   outline: none;
   width: 100%;
   color: var(--dark);
-  margin-top: 3px;
+  margin-top: 1px;
   font-size: 15px;
 }
 .content nav form .form-input input:focus {
@@ -278,7 +278,7 @@ button{
   outline: none;
   width: 100%;
   color: var(--dark);
-  margin-bottom: 5px;
+  margin-top: 1px;
 }
 
 .content nav form .form-input button {
