@@ -266,7 +266,8 @@ button{
   outline: none;
   width: 100%;
   color: var(--dark);
-  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 15px;
 }
 .content nav form .form-input input:focus {
   padding: 0 56px 0 13px;
