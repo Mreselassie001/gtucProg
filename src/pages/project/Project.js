@@ -126,7 +126,6 @@ ${window.location.href}`;
 
     // Use the `copy` function from useCopyToClipboard to copy the text to the clipboard
     copy(projectDetailsText);
-    CopyValue()
     alert("Reference copied to clipboard");
   };
 

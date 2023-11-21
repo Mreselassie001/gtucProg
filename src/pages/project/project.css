@@ -626,7 +626,7 @@ button:active .filler {
 }
 @media (max-width: 480px) {
   .projectPage .project {
-    margin: 15%;
+    margin:  5% 15%;
     scale: 0.9;
   }
   .projectPage .project .title {
