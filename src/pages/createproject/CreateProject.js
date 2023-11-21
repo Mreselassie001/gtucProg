@@ -34,6 +34,8 @@ const FileUploadInput = ({ onFileSelect }) => (
     </div>
     <input
       type="file"
+      id="file"
+      className="upload"
       onChange={(event) => {
         onFileSelect(event.target.files[0]);
       }}

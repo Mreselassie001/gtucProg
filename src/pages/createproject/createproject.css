@@ -79,7 +79,7 @@
   color: rgba(75, 85, 99, 1);
 }
 
-.custum-file-upload input {
+.custum-file-upload .upload {
   display: none;
 }
 
