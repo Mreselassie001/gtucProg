@@ -123,7 +123,7 @@ button:active {
 .projectPage .project table td:first-child {
   font-weight: bold;
   color: #333;
-  /* width: 10%; */
+  width: 0%;
 }
 
 /* Styling for value cells */
