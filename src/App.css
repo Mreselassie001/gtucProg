@@ -24,7 +24,6 @@
 
 .bx {
   font-size: 1.7rem;
-  
 }
 .bx-search {
   font-size: 1.7rem;
@@ -55,7 +54,7 @@ body {
   overflow-x: hidden;
 }
 
-button{
+button {
   cursor: pointer;
   font-weight: 500;
 }
@@ -529,4 +528,28 @@ button{
 }
 #logouticon {
   color: #e61f68;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* no iphone 5 */
+@media (max-width: 330px) {
+  body {
+    display: none;
+  }
 }

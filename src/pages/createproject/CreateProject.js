@@ -50,11 +50,10 @@ const CreateProject = ({ isAuth }) => {
   const [agreedToSubmit, setAgreedToSubmit] = useState(false);
   const [isFormComplete, setIsFormComplete] = useState(true); // State to check form completion
   const navigate = useNavigate();
-  setChecked(false);
   const handleCourseChange = (event) => {
     setSelectedCourse(event.target.value);
   };
-
+  
   const handleSupervisorChange = (event) => {
     setSupervisor(event.target.value);
   };
@@ -65,7 +64,7 @@ const CreateProject = ({ isAuth }) => {
   const handleCreateProject = async () => {
     if (!validateForm()) {
       setIsFormIncompleteModalOpen(true);
-    
+
       return;
     }
 
@@ -101,8 +100,7 @@ const CreateProject = ({ isAuth }) => {
     }
     // Set the form completion state to true
     setIsFormComplete(true);
-      
-    isFormComplete();
+
     return true;
   };
 
@@ -136,6 +134,7 @@ const CreateProject = ({ isAuth }) => {
 
     const fileRef = ref(storage, `files/${fileUpload.name + v4()}`);
     const uploadTask = uploadBytesResumable(fileRef, fileUpload);
+    setChecked(false);
 
     uploadTask.on(
       "state_changed",
@@ -143,8 +142,6 @@ const CreateProject = ({ isAuth }) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setUploadProgress(progress);
-        uploadProgress();
-
       },
       (error) => {
         console.error("Error uploading file:", error);
@@ -157,11 +154,14 @@ const CreateProject = ({ isAuth }) => {
     );
   };
 
-  useEffect((isAuth, navigate) => {
-    if (!isAuth) {
-      navigate("/login");
-    }
-  }, []);
+useEffect(() => {
+  // Redirect to login if not authenticated
+  if (!isAuth) {
+    navigate("/login");
+  }
+}, [isAuth, navigate]);
+
+
 
   return (
     <div className="createProjectPage">
@@ -269,16 +269,15 @@ const CreateProject = ({ isAuth }) => {
           onClick={() => {
             // Check form completion before showing the modal
             if (validateForm()) {
-              setShowModal(true);handleCreateProject()
+              setShowModal(true);
+              // handleCreateProject()
             } else {
               // Show the form-incomplete modal
               setIsFormIncompleteModalOpen(true);
             }
           }}
           disabled={isSubmitting}
-        >
-         
-        </button>
+        ></button>
         {/* Form-incomplete modal */}
       </div>
       <FormIncompleteModal
