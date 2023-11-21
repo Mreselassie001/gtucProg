@@ -166,7 +166,7 @@ useEffect(() => {
   return (
     <div className="createProjectPage">
       <div className="cpContainer">
-        <h1>Submit a Project</h1>
+        <h1>upload a Project</h1>
         <form>
           <label htmlFor="course">Select your Course:</label>
           <select
@@ -277,7 +277,9 @@ useEffect(() => {
             }
           }}
           disabled={isSubmitting}
-        ></button>
+        >
+          Submit
+        </button>
         {/* Form-incomplete modal */}
       </div>
       <FormIncompleteModal
@@ -303,8 +305,8 @@ useEffect(() => {
                 <br />
                 Proceed only if you agree; contact us with any queries.
                 Non-agreement implies refraining from submission. For questions
-                or concerns, reach out to administrators before clicking
-                "Submit."
+                or concerns, reach out to administrators before clicking "I
+                Agree"
               </p>
             </div>
             <div className="footer">
